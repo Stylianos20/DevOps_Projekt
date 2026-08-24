@@ -24,7 +24,6 @@ jobs:
         java-version: '17'
         cache: 'maven'
 
-    # 3. Mit Maven bauen und testen (CI-Schritt im Unterordner)
+    # 3. Mit Maven bauen und testen (CI-Schritt)
     - name: Mit Maven bauen und testen
       run: mvn clean verify
-      working-directory: ./devops-demo
