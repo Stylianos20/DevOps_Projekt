@@ -1,0 +1,29 @@
+name: DevOps CI Pipeline
+
+# Wann soll die Pipeline starten?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Den Code vom Repository herunterladen
+    - name: Repository auschecken
+      uses: actions/checkout@v4
+
+    # 2. Java (JDK) einrichten
+    - name: Java einrichten (JDK 17)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: 'maven'
+
+    # 3. Projekt mit Maven bauen und testen (CI-Schritt)
+    - name: Mit Maven bauen und testen
+      run: mvn clean verify
